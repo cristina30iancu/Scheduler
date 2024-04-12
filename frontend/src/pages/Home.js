@@ -1,5 +1,8 @@
-import { useAuth } from "../components/AuthProvider";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import orar from '../components/img/orar.png';
+import studentie from '../components/img/studentie.png';
+import note from '../components/img/note.png';
+import activitati from '../components/img/activitati.png';
 
 function Home() {
 
@@ -22,7 +25,6 @@ function Home() {
             <div id="about" class="section">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-md-6">
                             <div class="section-header">
                                 <h2 className="title">Bine ai venit!</h2>
@@ -31,7 +33,7 @@ function Home() {
                                 </p>
                             </div>
                             <div class="feature">
-                                <i class="feature-icon fas fa-school"></i>
+                                <img className='feature-icon' src={orar}></img>
                                 <div class="feature-content">
                                     <a href="/departments">
                                         <h4>Orar </h4>
@@ -40,7 +42,7 @@ function Home() {
                                 </div>
                             </div>
                             <div class="feature">
-                                <i class="feature-icon fas fa-book-open"></i>
+                                <img className='feature-icon' src={activitati}></img>
                                 <div class="feature-content">
                                     <a href="/instructors">
                                         <h4>Activități variate</h4>
@@ -50,8 +52,8 @@ function Home() {
                                 </div>
                             </div>
                             <div class="feature">
-                                <i class="feature-icon fas fa-pencil"></i>
-                                <div class="feature-content">
+                            <img className='feature-icon' src={note}></img>
+                                 <div class="feature-content">
                                     <a href="/sections">
                                         <h4>Note</h4>
                                     </a>
@@ -59,8 +61,8 @@ function Home() {
                                 </div>
                             </div>
                             <div class="feature">
-                                <i class="feature-icon far fa-graduation-cap"></i>
-                                <div class="feature-content">
+                            <img className='feature-icon' src={studentie}></img>
+                                 <div class="feature-content">
                                     <a href="/sections">
                                         <h4>Studenție</h4>
                                     </a>

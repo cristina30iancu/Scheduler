@@ -4,9 +4,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import NavigationAppBar from './components/NavigationAppBar';
-import { useState } from 'react';
 import { AuthProvider, useAuth } from './components/AuthProvider';
 import CalendarPage from './pages/CalendarPage';
+import Activities from './pages/Activities';
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function AppRoutes() {
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
       <Route path="calendar" element={isLoggedIn ? <CalendarPage /> : <Login />} />
+      <Route path="activitati" element={isLoggedIn ? <Activities /> : <Login />} />
     </Routes>
   );
 }

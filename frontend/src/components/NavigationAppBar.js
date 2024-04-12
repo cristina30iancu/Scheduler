@@ -1,12 +1,10 @@
 
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { Navbar, Nav, Button, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { useAuth } from './AuthProvider';
 import logo from './img/logo.png';
 
 function NavigationAppBar() {
-    const { isLoggedIn, user, login, logout } = useAuth();
+    const { isLoggedIn, logout } = useAuth();
 
     return (
         <Navbar className='my-nav' collapseOnSelect expand="lg" variant='dark' bg='dark' >
@@ -23,16 +21,12 @@ function NavigationAppBar() {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-center'>
                 <Nav className="mr-auto" style={{ margin: 'auto' }}>
-                    {isLoggedIn && <NavDropdown title="Evenimente" style={{ fontSize: '16px', color: 'white', margin: '8px' }}>
-                        <NavDropdown.Item href="/adaugaEveniment/">Adaugă</NavDropdown.Item>
-                        <NavDropdown.Item href="/evenimente">Vizualizează</NavDropdown.Item>
-                    </NavDropdown>}
+                    {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/activitati">Activități</Nav.Link>}
                     {isLoggedIn && <NavDropdown title="Cheltuieli" style={{ fontSize: '16px', color: 'white', margin: '8px' }}>
                         <NavDropdown.Item href="/adaugaCheltuiala/">Adaugă</NavDropdown.Item>
                         <NavDropdown.Item href="/cheltuieli">Vizualizează</NavDropdown.Item>
                     </NavDropdown>}
                     {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/calendar">Calendar</Nav.Link>}
-                    {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/invitatii">Invitații</Nav.Link>}
                 </Nav>
                 <Nav className="ml-auto mr-3">
                     {!isLoggedIn && <Nav.Link href='/login' >

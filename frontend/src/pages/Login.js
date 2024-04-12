@@ -70,7 +70,7 @@ function Login() {
                                 <Form.Label>Parolă</Form.Label>
                                 <Form.Control type="password" name="password" placeholder="Parolă" value={formData.password} onChange={handleChange} required />
                             </Form.Group>
-                            <Button variant="primary" type="submit" className="btn-block my-3" style={{ backgroundColor: '#314c47' }}>
+                            <Button variant="primary" type="submit" className="btn-block my-3">
                                 Autentificare
                             </Button>
                             <p><a href="#" onClick={() => navigate("/signup")}>Înregistrează-te dacă nu ai deja cont.</a></p>
