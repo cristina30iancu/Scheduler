@@ -22,10 +22,7 @@ function NavigationAppBar() {
             <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-center'>
                 <Nav className="mr-auto" style={{ margin: 'auto' }}>
                     {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/activitati">Activități</Nav.Link>}
-                    {isLoggedIn && <NavDropdown title="Cheltuieli" style={{ fontSize: '16px', color: 'white', margin: '8px' }}>
-                        <NavDropdown.Item href="/adaugaCheltuiala/">Adaugă</NavDropdown.Item>
-                        <NavDropdown.Item href="/cheltuieli">Vizualizează</NavDropdown.Item>
-                    </NavDropdown>}
+                    {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/notite">Notițe</Nav.Link>}
                     {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/calendar">Calendar</Nav.Link>}
                     {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/calculator">Calculator</Nav.Link>}
                 </Nav>

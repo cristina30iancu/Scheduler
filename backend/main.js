@@ -5,6 +5,7 @@ const { Sequelize } = require('sequelize');
 const authRoutes = require('./routes/authRoutes');
 const activityRoutes = require('./routes/activityRoutes');
 const gradeRoutes = require('./routes/gradeRoutes');
+const noteRoutes = require('./routes/noteRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -30,6 +31,7 @@ app.use(cors());
 app.use('/', authRoutes);
 app.use('/activity', activityRoutes);
 app.use('/grade', gradeRoutes);
+app.use('/note', noteRoutes);
 
 app.listen(PORT, () => {
     console.log(`Serverul a pornit pe portul ${PORT}...`);
