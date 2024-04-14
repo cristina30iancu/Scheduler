@@ -7,6 +7,7 @@ import NavigationAppBar from './components/NavigationAppBar';
 import { AuthProvider, useAuth } from './components/AuthProvider';
 import CalendarPage from './pages/CalendarPage';
 import Activities from './pages/Activities';
+import Calculator from './pages/Calculator';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function AppRoutes() {
       <Route path="" element={<Home />} />
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
+      <Route path="calculator" element={isLoggedIn ? <Calculator /> : <Login />} />
       <Route path="calendar" element={isLoggedIn ? <CalendarPage /> : <Login />} />
       <Route path="activitati" element={isLoggedIn ? <Activities /> : <Login />} />
     </Routes>

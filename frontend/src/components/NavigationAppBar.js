@@ -27,6 +27,7 @@ function NavigationAppBar() {
                         <NavDropdown.Item href="/cheltuieli">Vizualizează</NavDropdown.Item>
                     </NavDropdown>}
                     {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/calendar">Calendar</Nav.Link>}
+                    {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/calculator">Calculator</Nav.Link>}
                 </Nav>
                 <Nav className="ml-auto mr-3">
                     {!isLoggedIn && <Nav.Link href='/login' >

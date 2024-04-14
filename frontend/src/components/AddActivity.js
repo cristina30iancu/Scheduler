@@ -55,7 +55,7 @@ function AddActivity({ activity, refresh }) {
                 }
             }
         } catch (error) {
-            console.error('Eroare la autentificare!');
+            console.error('Eroare!', error);
         }
         setFormData({
             name: '',
