@@ -51,6 +51,10 @@ const Activity = sequelize.define('Activity', {
         type: DataTypes.DATE,
         allowNull: false,
     },
+    endDate: {
+        type: DataTypes.DATE,
+        allowNull: true,
+    },
     type: {
         type: DataTypes.STRING,
         allowNull: true,

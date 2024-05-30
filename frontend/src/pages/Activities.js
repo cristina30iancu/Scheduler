@@ -14,12 +14,12 @@ function Activities() {
 
     useEffect(() => {
         fetchActivities();
-    }, []);
+    }, [user]);
 
     const fetchActivities = async () => {
         setSelected(null);
         try {
-            const response = await fetch('http://localhost:8080/activity?UserId' + user.id);
+            const response = await fetch('http://localhost:8080/activity?UserId=' + user.id);
             const data = await response.json();
             if (response.ok) {
                 setActivities(data);
@@ -82,9 +82,9 @@ function Activities() {
                                 <ListGroup.Item className="m-2 shadow p-3" key={activity.id}>
                                     <p style={{ fontWeight: "bold" }}><FontAwesomeIcon color="orange" icon={faStar} /> {activity.name}</p>
                                     <p><FontAwesomeIcon color="darkblue" icon={faLinesLeaning} /> {activity.description}</p>
-                                    <p><FontAwesomeIcon color="darkgreen" icon={faCalendar} /> Data: {formatDate(new Date(activity.date))}</p>
+                                    <p><FontAwesomeIcon color="darkgreen" icon={faCalendar} /> Data: {formatDate(new Date(activity.date))} - {formatDate(new Date(activity.endDate))} </p>
                                     <p><FontAwesomeIcon color="darkred" icon={faTags} /> Tip: {activity.type}</p>
-                                    <Button className="mx-3" onClick={() => setSelected(activity)}><FontAwesomeIcon icon={faEdit} /></Button>
+                                   {new Date(activity.date) >= new Date() && <Button className="mx-3" onClick={() => setSelected(activity)}><FontAwesomeIcon icon={faEdit} /></Button>}
                                     <Button onClick={() => handleDelete(activity)} variant="danger"><FontAwesomeIcon icon={faTrash} /> </Button>
                                 </ListGroup.Item>
                             ))}

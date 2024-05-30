@@ -7,7 +7,7 @@ const { Activity } = require('../models');
 router.route('/').get(async (req, res) => {
     try {
         const query = {};
-        const allowedFilters = ['id', 'name', 'description', 'date', 'type', 'UserId'];
+        const allowedFilters = ['id', 'name', 'description', 'date', 'endDate', 'type', 'UserId'];
         const filterKeys = Object.keys(req.query).filter(e => allowedFilters.includes(e));
        
         if (filterKeys.length > 0) {

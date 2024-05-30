@@ -1,44 +1,74 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { toast } from "react-toastify";
+import { useAuth } from "../components/AuthProvider";
 
 const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(Calendar);
 
 function CalendarPage() {
-    const [events, setEvents] = useState([
-        {
-            start: moment().toDate(),
-            end: moment().add(1, "days").toDate(),
-            title: "Some title",
-        },
-    ]);
+    const { user } = useAuth();
+    const [events, setEvents] = useState();
 
-    const onEventResize = (data) => {
-        const { start, end } = data;
+    useEffect(() => {
+        fetchActivities();
+    }, []);
 
-        setEvents((prevEvents) => {
-            const updatedEvents = [...prevEvents];
-            updatedEvents[0].start = start;
-            updatedEvents[0].end = end;
-            return updatedEvents;
-          });
+    const fetchActivities = async () => {
+        try {
+            const response = await fetch('http://localhost:8080/activity?UserId=' + user.id);
+            const data = await response.json();
+            if (response.ok) {
+                const arr = [];
+                for (let act of data) {
+                    arr.push({ start: moment(act.date), end: moment(act.endDate), title: act.name, id: act.id });
+                }
+                setEvents(arr);
+            } else {
+                toast.error(data.message)
+            }
+
+        } catch (error) {
+            console.error('Eroare la obținerea activităților.', error);
+            toast.error('Eroare la obținerea activităților.', error);
+        }
     };
 
-    const onEventDrop = (data) => {
-        console.log(data);
-        const { start, end } = data;
+    const updateActivity = async (id, body) => {
+        try {
+            const response = await fetch('http://localhost:8080/activity/' + id, {
+                method: 'PUT',
+                body: JSON.stringify(body),
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            });
+            const data = await response.json();
+            if (response.ok) {
+                await fetchActivities();
+            } else {
+                toast.error(data.message)
+            }
 
-        setEvents((prevEvents) => {
-            const updatedEvents = [...prevEvents];
-            updatedEvents[0].start = start;
-            updatedEvents[0].end = end;
-            return updatedEvents;
-          });
+        } catch (error) {
+            console.error('Eroare la obținerea activităților.', error);
+            toast.error('Eroare la obținerea activităților.', error);
+        }
+    };
+
+    const onEventResize = async data => {
+        const { start, end, event } = data;
+        await updateActivity(event.id, { date: start, endDate: end });
+    };
+
+    const onEventDrop = async data => {
+        const { start, end, event } = data;
+        await updateActivity(event.id, { date: start, endDate: end });
     };
 
     return (

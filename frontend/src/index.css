@@ -649,6 +649,7 @@ button svg {
 }
 
 /* calculator */
+
 @import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
 /* quick reset so all our padding is the right size */
@@ -664,7 +665,7 @@ button svg {
     display:grid;
     grid-template-columns: repeat(4,1fr);
     border:0;
-} 
+}
 .calc-numbers{
     font-family: 'Space Mono', serif;
     background: black;

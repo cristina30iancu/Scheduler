@@ -25,7 +25,7 @@ function Notes() {
 
     const fetchActivities = async () => {
         try {
-            const response = await fetch('http://localhost:8080/activity?UserId' + user.id);
+            const response = await fetch('http://localhost:8080/activity?UserId=' + user.id);
             const data = await response.json();
             if (response.ok) {
                 setActivities(data);

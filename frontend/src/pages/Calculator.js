@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import AddGrade from "../components/AddGrade";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import '../calculator.css'
 
 function CalculatorPage() {
     const { user } = useAuth();
@@ -21,7 +22,7 @@ function CalculatorPage() {
 
     const fetchActivities = async () => {
         try {
-            const response = await fetch('http://localhost:8080/activity?UserId' + user.id);
+            const response = await fetch('http://localhost:8080/activity?UserId=' + user.id);
             const data = await response.json();
             if (response.ok) {
                 setActivities(data);
