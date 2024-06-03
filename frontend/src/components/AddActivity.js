@@ -11,21 +11,23 @@ function AddActivity({ activity, refresh }) {
         description: '',
         date: '',
         type: '',
-        UserId: user.id
+        UserId: user.id, endDate: ''
     });
 
     useEffect(() => {
-        setFormData(activity ? { ...activity, date: activity.date.split('T')[0] } : {
+        setFormData(activity ? { ...activity, date: activity.date.split('T')[0], endDate: activity.endDate.split('T')[0] } : {
             name: '',
             description: '',
             date: '',
             type: '',
-            UserId: user.id
+            UserId: user.id, endDate: ''
         })
     }, [activity]);
 
     const handleChange = (e) => {
+        
         const { name, value } = e.target;
+        console.log(value, new Date().toISOString())
         setFormData({ ...formData, [name]: value });
     };
 
@@ -62,7 +64,7 @@ function AddActivity({ activity, refresh }) {
             description: '',
             date: '',
             type: '',
-            UserId: user.id
+            UserId: user.id, endDate: ''
         });
     };
 
@@ -79,9 +81,13 @@ function AddActivity({ activity, refresh }) {
                 <Form.Control type="text" name="description" placeholder="Descriere" value={formData.description} onChange={handleChange} required />
             </Form.Group>
             <Form.Group className="text-start mb-3">
-                <Form.Label>Dată</Form.Label>
+                <Form.Label>Dată începere</Form.Label>
                 <Form.Control type="date" min={new Date().toISOString().split('T')[0]} name="date" value={formData.date} onChange={handleChange} required />
             </Form.Group>
+            {formData.date && <Form.Group className="text-start mb-3">
+                <Form.Label>Dată final</Form.Label>
+                <Form.Control type="date" min={formData.date.split('T')[0]} name="endDate" value={formData.endDate} onChange={handleChange} required />
+            </Form.Group>}
             <Form.Group className='text-start mb-3'>
                 <Form.Label>Tip</Form.Label>
                 <Form.Select as="select" value={formData.type} name='type' required onChange={handleChange} >
