@@ -56,15 +56,20 @@ function AddNote({ note, refresh, ActivityId }) {
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name == 'file') {
-            const selectedImage = e.target.files[0];
-            if (selectedImage) {
+            const selectedFile = e.target.files[0];
+            if(!['image', 'video', 'pdf'].includes(selectedFile.type)){
+                toast.error("Puteți adăuga doar imagini, clipuri și pdf-uri!");
+                return;
+            }
+            console.log(selectedFile)
+            if (selectedFile) {
                 const reader = new FileReader();
                 reader.onloadend = () => {
                     setFormData({ ...formData, [name]: reader.result });
                     setImageBase64(reader.result);
                     base64IntoUrl(reader.result);
                 };
-                reader.readAsDataURL(selectedImage);
+                reader.readAsDataURL(selectedFile);
             }
         } else setFormData({ ...formData, [name]: value });
     };
@@ -73,6 +78,10 @@ function AddNote({ note, refresh, ActivityId }) {
         e.preventDefault();
         if (!formData.ActivityId && !ActivityId) {
             toast.error("Alege o activitate!");
+            return;
+        }
+        if (!formData.file) {
+            toast.error("Încarcă un fișier corect!");
             return;
         }
         try {
