@@ -1,7 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const { Op } = require('sequelize');
-const { Grade } = require('../models');
+const { Grade, Activity } = require('../models');
+
+router.route('/user/:userId').get(async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const grades = await Grade.findAll({
+            include: {
+                model: Activity,
+                where: { UserId: userId }
+            }
+        });
+        return res.status(200).json(grades);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'A intervenit o eroare în timpul obținerii notelor utilizatorului.' + error });
+    }
+});
 
 // GET all grades
 router.route('/').get(async (req, res) => {

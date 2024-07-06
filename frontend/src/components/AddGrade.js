@@ -68,12 +68,15 @@ function AddGrade({ grade, refresh, ActivityId }) {
             <h2 className="text-center my-4">{grade ? 'Editează' : 'Adaugă'} notă</h2>
             <Form.Group className="text-start mb-3">
                 <Form.Label>Notă</Form.Label>
-                <Form.Control type="number" name="value" placeholder="Notă" value={formData.value} onChange={handleChange} required />
+                <Form.Control type="number" step="0.1" min="1" max="10" name="value" placeholder="Notă" value={formData.value} onChange={handleChange} required />
             </Form.Group>
             <Form.Group className="text-start mb-3">
                 <Form.Label>Credite</Form.Label>
-                <Form.Control type="number" name="credits" value={formData.credits} placeholder="Credite" onChange={handleChange} required />
+                <Form.Control min="1" max="15" type="number" name="credits" value={formData.credits} placeholder="Credite" onChange={handleChange} required />
             </Form.Group>
+            {grade  && <Button variant="danger" type="button" onClick={()=> window.location.reload()} className="btn-block my-3 mx-3">
+                Renunță
+            </Button>}
             <Button variant="primary" type="submit" className="btn-block my-3">
                 Salvează
             </Button>

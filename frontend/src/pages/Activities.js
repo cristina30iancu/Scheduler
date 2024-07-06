@@ -64,8 +64,12 @@ function Activities() {
             });
             if (!response.ok) {
                 toast.error("Eroare ștergere!")
-            } else toast.success("Șters!");
-            await fetchActivities();
+            } else {
+                toast.success("Șters!");
+                setShowDeleteModal(false);
+                await fetchActivities();
+            }
+           
         } catch (error) {
             console.error('Eroare la ștergere:', error);
         }

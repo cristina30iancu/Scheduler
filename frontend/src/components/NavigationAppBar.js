@@ -25,6 +25,7 @@ function NavigationAppBar() {
                     {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/notite">Notițe</Nav.Link>}
                     {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/calendar">Calendar</Nav.Link>}
                     {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/calculator">Calculator</Nav.Link>}
+                    {isLoggedIn && <Nav.Link style={{ fontSize: '16px', color: 'white', margin: '8px' }} href="/statistici">Statistici</Nav.Link>}
                 </Nav>
                 <Nav className="ml-auto mr-3">
                     {!isLoggedIn && <Nav.Link href='/login' >

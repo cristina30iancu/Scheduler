@@ -9,6 +9,7 @@ import CalendarPage from './pages/CalendarPage';
 import Activities from './pages/Activities';
 import Calculator from './pages/Calculator';
 import Notes from './pages/Notes';
+import Statistici from './pages/Statistici';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function AppRoutes() {
       <Route path="calendar" element={isLoggedIn ? <CalendarPage /> : <Login />} />
       <Route path="activitati" element={isLoggedIn ? <Activities /> : <Login />} />
       <Route path="notite" element={isLoggedIn ? <Notes /> : <Login />} />
+      <Route path="statistici" element={isLoggedIn ? <Statistici /> : <Login />} />
     </Routes>
   );
 }
