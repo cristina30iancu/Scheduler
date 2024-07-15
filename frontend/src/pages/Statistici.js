@@ -184,7 +184,7 @@ function Statistici() {
             }
         }
         setSuggestions(newSuggestions);
-        if(newSuggestions.length == 0){
+        if (newSuggestions.length == 0) {
             toast.warning("Nu s-au găsit sugestii!");
         }
     };
@@ -295,9 +295,15 @@ function Statistici() {
                             <Col>
                                 <Form.Control
                                     type="number"
+                                    max="10"
                                     placeholder="Introduceți media dorită"
                                     value={targetAverage}
-                                    onChange={(e) => setTargetAverage(e.target.value)}
+                                    onChange={(e) => {
+                                        const v = e.target.value
+                                        if (v > 10) {
+                                            toast.error("Dați o medie între 1 și 10!")
+                                        } else setTargetAverage(e.target.value)
+                                    }}
                                 />
                             </Col>
                             <Col>
