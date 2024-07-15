@@ -212,27 +212,37 @@ function Statistici() {
         }
     });
 
+    const aggregatedActivities = activities.reduce((acc, activity) => {
+        if (!acc[activity.type]) {
+            acc[activity.type] = 0;
+        }
+        acc[activity.type]++;
+        return acc;
+    }, {});
+
+    const pieData = {
+        labels: Object.keys(aggregatedActivities),
+        datasets: [{
+            label: 'Tipuri de activități',
+            data: Object.values(aggregatedActivities),
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+            ]
+        }]
+    };
+
     return (
         <div className="container mt-5">
             <h1 className="text-center mb-4">Statisticile mele</h1>
             <div className="row">
                 <div className="col-md-6">
                     <h3>Tipuri de activități</h3>
-                    <Pie data={{
-                        labels: activities.map(act => act.type),
-                        datasets: [{
-                            label: 'Tipuri de activități',
-                            data: activities.map(act => activities.filter(a => a.type === act.type).length),
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.6)',
-                                'rgba(54, 162, 235, 0.6)',
-                                'rgba(255, 206, 86, 0.6)',
-                                'rgba(75, 192, 192, 0.6)',
-                                'rgba(153, 102, 255, 0.6)',
-                                'rgba(255, 159, 64, 0.6)',
-                            ]
-                        }]
-                    }} />
+                    <Pie data={pieData} />
                 </div>
                 <div className="col-md-6">
                     <Form.Group className='mb-4'>

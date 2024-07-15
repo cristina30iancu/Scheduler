@@ -100,6 +100,7 @@ function Notes() {
                 toast.error("Eroare ștergere!")
             } else toast.success("Șters!");
             await fetchActivities();
+            handleCloseDelete();
         } catch (error) {
             console.error('Eroare la ștergere:', error);
         }

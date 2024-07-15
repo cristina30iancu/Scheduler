@@ -57,10 +57,13 @@ function AddNote({ note, refresh, ActivityId }) {
         const { name, value } = e.target;
         if (name == 'file') {
             const selectedFile = e.target.files[0];
-            if(!['image', 'video', 'pdf'].includes(selectedFile.type)){
+            console.log(selectedFile.type);
+
+            if (!['image', 'video', 'pdf'].some(type => selectedFile.type.includes(type))) {
                 toast.error("Puteți adăuga doar imagini, clipuri și pdf-uri!");
                 return;
             }
+
             console.log(selectedFile)
             if (selectedFile) {
                 const reader = new FileReader();
